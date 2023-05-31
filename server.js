@@ -10,13 +10,19 @@ import blogRouter from './routers/blogRouter.js';
 
 // give mailing feature to the app without using any third party service
 import mailer from 'express-mailer';
-
+import cors from 'cors';
 
 
 dotenv.config();
 
 const app = express();
+app.use(cors({
 
+    origin: ['http://localhost:3000', 'https://agrix.netlify.app'],
+
+    credentials: true
+
+}));
 // mine
 mailer.extend(app, {
     from: process.env.FROM_MAILID,
